@@ -1,0 +1,33 @@
+os:
+  - linux
+  - osx
+language: generic
+sudo: required
+dist: trusty
+osx_image: xcode8
+
+env:
+  global:
+    - FRAMEWORK_NAME="QuerySerialization"
+
+before_install:
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew update; fi
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew outdated carthage || brew upgrade carthage; fi
+
+script:
+  - eval "$(curl -sL https://swift.vapor.sh/ci)"
+  - eval "$(curl -sL https://swift.vapor.sh/codecov)"
+
+before_deploy:
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then carthage build --no-skip-current; fi
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then carthage archive $FRAMEWORK_NAME; fi
+
+deploy:
+  provider: releases
+  api_key:
+    secure: TqMrSno5As6P5PIl+4r6IPuL3yyaIe8Re8w2UFxsOSKOZSJYrRBAk9fHeYhQ+/sIXVtZhYjCadKcpNceQegiA0K/KY5aZJZn9IMSRuA9TiCgQsFTojSaSsuWM+hedNHn6QvcpbFI1QavzFkC34ymx4y7kdXWVK89yLrEw2U3XT6XvHosI+QqV3fwOnE5+z5YPaZFEwbnQa2NwvBVOrZWk5dhxVP125GRJcuUl60fXOc4bdu0LGynDodvUUT8JWN0zVtg2NG1Vek19Cr35YmNR7LYyhS7bdJIu7B7hQR19Dz9iuyYJ8r5R11FJMm7ltv1Cn9bWPoym4QGQ+/JVzJiqJR+Jm1QlCz4qFFEUNe6EjeonAh5fAIBq+WnM5ZGXb/icj2vkHK5J8XTHjGbBOcNtDKgF0ljoymdZS8000kDhF9gpulEZUUU5cwUszy42j95fIG5GISLw7jq2juvzoG/BTlkl3V3gXO6LJY3nFTBGUOuDlTSVpMC8OfD9BVCUHG18Z8gjyhwrDmUW+Jdj07mOQJrX2kNmfOYrsbIWzVvda77xqtDM0PEtcmpFM5xGqMv0oG1skNpN3H/9bH2U9BHPalubcuh3FrW7oHLbZ5XN0Pq61zy8wymWi6kcYt/CNjVyFFSApX1DLiQMzR7/g2tQRyuLUd3sPI21FbyJECynsI=
+  file: "$FRAMEWORK_NAME.framework.zip"
+  skip_cleanup: true
+  on:
+    repo: alexaubry/QuerySerialization
+    tags: true
