@@ -39,7 +39,7 @@ Add this line to your `Package.swift`:
 Add this line to your `Podfile`:
 
 ~~~ruby
-pod "QuerySerialization" ~> '1.0.0'
+pod "QuerySerialization"
 ~~~
 
 ### Carthage
@@ -47,7 +47,7 @@ pod "QuerySerialization" ~> '1.0.0'
 Add this line to your Cartfile:
 
 ~~~
-github "alexaurby/QuerySerialization" ~> 1.0
+github "alexaurby/QuerySerialization"
 ~~~
 
 ### Manually
