@@ -84,7 +84,7 @@ To decode a query string into a Dictionary, call:
 
 ~~~swift
 let queryString = "key=value&message=Hello%20world"
-let queryElements = QueryElements.decode(queryString: queryString)
+let queryElements = QuerySerialization.decode(queryString: queryString)
 
 // queryElements = ["key":"value","message":"Hello world"]
 ~~~
@@ -93,7 +93,7 @@ If a key or value contains percent encoding, it will be removed automatically. Y
 
 ~~~swift
 let queryString = "key=value&message=Hello%20world"
-let queryElements = QueryElements.decode(queryString: queryString, removePercentEncoding: false)
+let queryElements = QuerySerialization.decode(queryString: queryString, removePercentEncoding: false)
 
 // queryElements = ["key":"value","message":"Hello%20world"]
 ~~~

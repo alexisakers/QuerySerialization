@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "QuerySerialization"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "Encode and Decode Query Strings in Swift"
   s.description  = <<-DESC
     QuerySerialization allows you to encode dictionaries into query strings, and to decode query strings to dictionaries. It also supports automatic percent encoding/decoding.
