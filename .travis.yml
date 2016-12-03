@@ -19,7 +19,7 @@ script:
   - eval "$(curl -sL https://swift.vapor.sh/codecov)"
 
 before_deploy:
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then carthage build --no-skip-current; fi
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then carthage build --no-skip-current --verbose; fi
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then carthage archive $FRAMEWORK_NAME; fi
 
 deploy:
@@ -30,4 +30,5 @@ deploy:
   skip_cleanup: true
   on:
     repo: alexaubry/QuerySerialization
-    tags: true
+    #tags: true
+    all_branches: true
