@@ -1,19 +1,42 @@
-os:
-  - linux
-  - osx
 language: generic
-sudo: required
-dist: trusty
-osx_image: xcode8.1
 
-env:
-  global:
-    - FRAMEWORK_NAME="QuerySerialization"
+matrix:
+    include:
+        - os: linux
+          dist: trusty
+          sudo: required
+          env: LOCAL_SWIFT_BRANCH="swift-4.0-release" LOCAL_SWIFT_VERSION="swift-4.0-RELEASE" DEPLOY="false"
+        - os: osx
+          osx_image: xcode9
+          language: objective-c
+          env: PLATFORM="iOS" TEST="simulator" TEST_DEVICE="iPhone-6s" TEST_RUNTIME="iOS-9-3" SCHEME="QuerySerialization-iOS" DEPLOY="false"
+        - os: osx
+          osx_image: xcode9
+          language: objective-c
+          env: PLATFORM="iOS" TEST="simulator" TEST_DEVICE="iPhone-6s" TEST_RUNTIME="iOS-10-3" SCHEME="QuerySerialization-iOS" DEPLOY="false"
+        - os: osx
+          osx_image: xcode9
+          language: objective-c
+          env: PLATFORM="iOS" TEST="simulator" TEST_DEVICE="iPhone-6s" TEST_RUNTIME="iOS-11-0" SCHEME="QuerySerialization-iOS" DEPLOY="false"
+        - os: osx
+          osx_image: xcode9
+          language: objective-c
+          env: PLATFORM="tvOS" TEST="simulator" TEST_DEVICE="Apple-TV-1080p" TEST_RUNTIME="tvOS-11-0" SCHEME="QuerySerialization-tvOS" DEPLOY="false"
+        - os: osx
+          osx_image: xcode9
+          language: objective-c
+          env: PLATFORM="watchOS" TEST="none" SCHEME="QuerySerialization-watchOS" DEPLOY="false"
+        - os: osx
+          osx_image: xcode9
+          language: objective-c
+          env: PLATFORM="macOS" TEST="device" DESTINATION="arch=x86_64" SCHEME="QuerySerialization-macOS" DEPLOY="true" FRAMEWORK_NAME="QuerySerialization"
 
-before_install:
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew update; fi
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew outdated carthage || brew upgrade carthage; fi
+install:
+  - sudo bash ./.ci/install.sh
 
 script:
-  - eval "$(curl -sL https://swift.vapor.sh/ci)"
-  - eval "$(curl -sL https://swift.vapor.sh/codecov)"
+  - set -o pipefail && bash ./.ci/test.sh
+
+before_deploy:
+  - bash ./.ci/before_deploy.sh
+  
