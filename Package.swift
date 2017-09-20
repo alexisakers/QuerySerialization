@@ -9,6 +9,6 @@ let package = Package(
     ],
     targets: [
         .target(name: "QuerySerialization", path: "Sources"),
-        .testTarget(name: "QuerySerializationTests")
+        .testTarget(name: "QuerySerializationTests", dependencies: ["QuerySerialization"])
     ]
 )
