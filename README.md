@@ -1,14 +1,11 @@
 # QuerySerialization
 
-![Swift 3.0.1](https://img.shields.io/badge/Swift-3.0.1-ee4f37.svg)
+![Swift 4.0](https://img.shields.io/badge/Swift-4.0-ee4f37.svg)
 ![License](https://img.shields.io/badge/License-MIT-000000.svg)
 [![CocoaPods](https://img.shields.io/cocoapods/v/QuerySerialization.svg)](https://cocoapods.org/pods/QuerySerialization)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Build Status](https://travis-ci.org/alexaubry/QuerySerialization.svg?branch=master)](https://travis-ci.org/alexaubry/QuerySerialization)
 [![codecov](https://codecov.io/gh/alexaubry/QuerySerialization/branch/master/graph/badge.svg)](https://codecov.io/gh/alexaubry/QuerySerialization)
-[![Twitter : @leksantoine](https://img.shields.io/badge/Twitter-%40leksantoine-6C7A89.svg)](https://twitter.com/leksantoine)
-
-
 
 **QuerySerialization** is a Swift library that allows you to encode dictionaries into query strings, and to decode query strings into dictionaries. It also supports automatic percent encoding/decoding.
 
@@ -31,7 +28,7 @@
 Add this line to your `Package.swift`:
 
 ~~~swift
-.Package(url: "https://github.com/alexaubry/QuerySerialization.git", majorVersion: 1, minor: 0)
+.Package(url: "https://github.com/alexaubry/QuerySerialization.git", from: "2.0.0")
 ~~~
 
 ### CocoaPods
@@ -97,3 +94,12 @@ let queryElements = QuerySerialization.decode(queryString: queryString, removePe
 
 // queryElements = ["key":"value","message":"Hello%20world"]
 ~~~
+
+## Author
+
+- Alexis Aubry me@alexaubry.fr
+- You can find me on Twitter: [@_alexaubry](https://twitter.com/_alexaubry)
+
+## License
+
+QuerySerialization is available under the MIT License. See the [LICENSE](LICENSE) file for more info.

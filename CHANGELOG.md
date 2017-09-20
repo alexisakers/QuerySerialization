@@ -1,10 +1,14 @@
 # QuerySerialization Change Log
 
-## 2016-12-03 — Version 1.0.1
+## 🔖 v1.1.0 — 2017-09-20
+
+- Update for Swift 4 and Xcode 9
+
+## 🔖 v1.0.1 — 2016-12-03
 
 - Fix wrong example in README and documentation
 
-## 2016-12-03 — Version 1.0.0
+## 🔖 v1.0.0 — 2016-12-03
 
 - Encode queries from dictionaries
 - Decode queries from strings
