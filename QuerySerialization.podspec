@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/alexaubry/QuerySerialization"
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author             = { "Alexis Aubry Radanovic" => "aleks@alexis-aubry-radanovic.me" }
-  s.social_media_url   = "https://twitter.com/leksantoine"
+  s.social_media_url   = "https://twitter.com/_alexaubry"
   
   s.ios.deployment_target = "8.0"
   s.osx.deployment_target = "10.9"

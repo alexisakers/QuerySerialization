@@ -1,5 +1,9 @@
 # QuerySerialization Change Log
 
+## 🔖 v1.1.1 — 2017-09-20
+
+- Fix CocoaPods metadata
+
 ## 🔖 v1.1.0 — 2017-09-20
 
 - Update for Swift 4 and Xcode 9
