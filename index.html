@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>QuerySerialization  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a title="QuerySerialization  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html">QuerySerialization Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/alexaubry/QuerySerialization"><img src="img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right"><a href="dash-feed://https%3A%2F%2Falexaubry%2Egithub%2Eio%2Fdocsets%2FQuerySerialization%2Exml"><img src="img/dash.png"/>Install in Dash</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html">QuerySerialization Reference</a>
+        <img id="carat" src="img/carat.png" />
+        QuerySerialization  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/QuerySerialization.html">QuerySerialization</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+            <h1 id='queryserialization' class='heading'>QuerySerialization</h1>
+
+<p><img src="https://img.shields.io/badge/Swift-4.0-ee4f37.svg" alt="Swift 4.0">
+<img src="https://img.shields.io/badge/License-MIT-000000.svg" alt="License">
+<a href="https://cocoapods.org/pods/QuerySerialization"><img src="https://img.shields.io/cocoapods/v/QuerySerialization.svg" alt="CocoaPods"></a>
+<a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible"></a>
+<a href="https://travis-ci.org/alexaubry/QuerySerialization"><img src="https://travis-ci.org/alexaubry/QuerySerialization.svg?branch=master" alt="Build Status"></a></p>
+
+<p><strong>QuerySerialization</strong> is a Swift library that allows you to encode dictionaries into query strings, and to decode query strings into dictionaries. It also supports automatic percent encoding/decoding.</p>
+
+<p>📚  <a href="https://alexaubry.github.io/QuerySerialization">Documentation</a></p>
+<h2 id='platforms' class='heading'>Platforms</h2>
+
+<ul>
+<li><input type="checkbox" disabled checked>iOS 8.0+</li>
+<li><input type="checkbox" disabled checked>macOS 10.9+</li>
+<li><input type="checkbox" disabled checked>tvOS 9.0+</li>
+<li><input type="checkbox" disabled checked>watchOS 2.0+</li>
+<li><input type="checkbox" disabled checked>Linux</li>
+</ul>
+<h2 id='installation' class='heading'>Installation</h2>
+<h3 id='queryserialization-version-vs-swift-version' class='heading'>QuerySerialization version vs. Swift version</h3>
+
+<table><thead>
+<tr>
+<th>Swift</th>
+<th>QuerySerialization</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>4.X</td>
+<td>&gt;= 1.1.0</td>
+</tr>
+<tr>
+<td>3.X</td>
+<td>&gt;= 1.0.0</td>
+</tr>
+</tbody></table>
+<h3 id='swift-package-manager' class='heading'>Swift Package Manager</h3>
+
+<p>Add this line to your <code>Package.swift</code>:</p>
+<pre class="highlight swift"><code><span class="o">.</span><span class="kt">Package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/alexaubry/QuerySerialization.git"</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="s">"1.1.0"</span><span class="p">)</span>
+</code></pre>
+<h3 id='cocoapods' class='heading'>CocoaPods</h3>
+
+<p>Add this line to your <code>Podfile</code>:</p>
+<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s2">"QuerySerialization"</span>
+</code></pre>
+<h3 id='carthage' class='heading'>Carthage</h3>
+
+<p>Add this line to your Cartfile:</p>
+<pre class="highlight plaintext"><code>github "alexaurby/QuerySerialization"
+</code></pre>
+<h3 id='manually' class='heading'>Manually</h3>
+
+<p>Drag the <code>QuerySerialization.swift</code> file into your project.</p>
+<h2 id='usage' class='heading'>Usage</h2>
+
+<p>You use the <code>QuerySerialization</code> class to encode or decode query strings.</p>
+<h3 id='encoding' class='heading'>Encoding</h3>
+
+<p>To encode a dictionary into a query string, call:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">queryElements</span> <span class="o">=</span> <span class="p">[</span><span class="s">"key"</span><span class="p">:</span><span class="s">"value"</span><span class="p">,</span><span class="s">"message"</span><span class="p">:</span><span class="s">"Hello world"</span><span class="p">]</span>
+<span class="k">let</span> <span class="nv">queryString</span> <span class="o">=</span> <span class="kt">QuerySerialization</span><span class="o">.</span><span class="nf">queryString</span><span class="p">(</span><span class="nv">fromDictionary</span><span class="p">:</span> <span class="n">queryElements</span><span class="p">)</span>
+
+<span class="c1">// queryString = "key=value&amp;message=Hello%20world"</span>
+</code></pre>
+
+<p>As you may notice, percent encoding is added automatically by default. You can opt-out this feature by using this instead:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">queryElements</span> <span class="o">=</span> <span class="p">[</span><span class="s">"key"</span><span class="p">:</span><span class="s">"value"</span><span class="p">,</span><span class="s">"message"</span><span class="p">:</span><span class="s">"Hello world"</span><span class="p">]</span>
+<span class="k">let</span> <span class="nv">queryString</span> <span class="o">=</span> <span class="kt">QuerySerialization</span><span class="o">.</span><span class="nf">queryString</span><span class="p">(</span><span class="nv">fromDictionary</span><span class="p">:</span> <span class="n">queryElements</span><span class="p">,</span> <span class="nv">urlEncode</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
+
+<span class="c1">// queryString = "key=value&amp;message=Hello world"</span>
+</code></pre>
+<h3 id='decoding' class='heading'>Decoding</h3>
+
+<p>To decode a query string into a Dictionary, call:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">queryString</span> <span class="o">=</span> <span class="s">"key=value&amp;message=Hello%20world"</span>
+<span class="k">let</span> <span class="nv">queryElements</span> <span class="o">=</span> <span class="kt">QuerySerialization</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="nv">queryString</span><span class="p">:</span> <span class="n">queryString</span><span class="p">)</span>
+
+<span class="c1">// queryElements = ["key":"value","message":"Hello world"]</span>
+</code></pre>
+
+<p>If a key or value contains percent encoding, it will be removed automatically. You can opt-out this feature by using this instead:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">queryString</span> <span class="o">=</span> <span class="s">"key=value&amp;message=Hello%20world"</span>
+<span class="k">let</span> <span class="nv">queryElements</span> <span class="o">=</span> <span class="kt">QuerySerialization</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="nv">queryString</span><span class="p">:</span> <span class="n">queryString</span><span class="p">,</span> <span class="nv">removePercentEncoding</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
+
+<span class="c1">// queryElements = ["key":"value","message":"Hello%20world"]</span>
+</code></pre>
+<h2 id='author' class='heading'>Author</h2>
+
+<ul>
+<li>Alexis Aubry <a href="mailto:me@alexaubry.fr">me@alexaubry.fr</a></li>
+<li>You can find me on Twitter: <a href="https://twitter.com/_alexaubry">@_alexaubry</a></li>
+</ul>
+<h2 id='license' class='heading'>License</h2>
+
+<p>QuerySerialization is available under the MIT License. See the <a href="LICENSE">LICENSE</a> file for more info.</p>
+
+          </section>
+        </section>
+        <section id="footer">
+          <p>Copyright © 2017 Alexis Aubry. Available under the MIT License.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
