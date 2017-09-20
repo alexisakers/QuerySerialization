@@ -1,35 +1,6 @@
-/*
- * ==---------------------------------------------------------------------------------==
- *
- *  File            :   QuerySerialization.swift
- *  Project         :   QuerySerialization
- *  Author          :   ALEXIS AUBRY RADANOVIC
- *
- *  License         :   The MIT License (MIT)
- *
- * ==---------------------------------------------------------------------------------==
- *
- *	The MIT License (MIT)
- *	Copyright (c) 2016 ALEXIS AUBRY RADANOVIC
- *
- *	Permission is hereby granted, free of charge, to any person obtaining a copy of
- *	this software and associated documentation files (the "Software"), to deal in
- *	the Software without restriction, including without limitation the rights to
- *	use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- *	the Software, and to permit persons to whom the Software is furnished to do so,
- *	subject to the following conditions:
- *
- *	The above copyright notice and this permission notice shall be included in all
- *	copies or substantial portions of the Software.
- *
- *	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- *	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- *	FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- *	COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- *	IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- *	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *
- * ==---------------------------------------------------------------------------------==
+/**
+ *  QuerySerialization
+ *  Copyright (c) 2017 Alexis Aubry. Licensed under the MIT license.
  */
 
 import Foundation
@@ -53,7 +24,7 @@ public class QuerySerialization {
     /// - note: The returned string does not contain the `?` prefix.
     ///
     
-    public static func queryString(fromDictionary dictionary: [String:String], urlEncode: Bool = true) -> String {
+    public static func queryString(fromDictionary dictionary: [String: String], urlEncode: Bool = true) -> String {
         
         let queryContents: [String] = dictionary.map {
         
@@ -86,7 +57,7 @@ public class QuerySerialization {
     /// - note: If the query string is not valid, an empty dictionary is returned.
     ///
     
-    public static func decode(queryString: String, removePercentEncoding: Bool = true) -> [String:String] {
+    public static func decode(queryString: String, removePercentEncoding: Bool = true) -> [String: String] {
         
         guard queryString.contains("=") else {
             return [:]
@@ -114,7 +85,7 @@ public class QuerySerialization {
         
         while let pairStartRange = mutableQueryString.range(of: "&") {
             
-            let stripped = mutableQueryString.substring(from: pairStartRange.upperBound)
+            let stripped = String(mutableQueryString[pairStartRange.upperBound ..< mutableQueryString.endIndex])
             
             let nextPairStartRange = stripped.range(of: "&")
             let pairEndIndex = nextPairStartRange?.lowerBound ?? stripped.endIndex
@@ -124,7 +95,7 @@ public class QuerySerialization {
             }
             
             decoded.append(keyValuePair)
-            mutableQueryString = stripped.substring(from: pairEndIndex)
+            mutableQueryString = String(stripped[pairEndIndex ..< stripped.endIndex])
             
         }
         
@@ -159,8 +130,8 @@ public class QuerySerialization {
         let keyRange = string.startIndex ..< equalRange.lowerBound
         let valueRange = equalRange.upperBound ..< endIndex
         
-        var key = string.substring(with: keyRange)
-        var value = string.substring(with: valueRange)
+        var key = String(string[keyRange])
+        var value = String(string[valueRange])
         
         if removePercentEncoding {
             key = key.removingPercentEncoding ?? key
