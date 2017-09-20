@@ -3,6 +3,7 @@
 ## 🔖 v1.1.0 — 2017-09-20
 
 - Update for Swift 4 and Xcode 9
+- Run tests on more platforms
 
 ## 🔖 v1.0.1 — 2016-12-03
 

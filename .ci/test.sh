@@ -4,10 +4,10 @@ set -e
 if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
 
     echo "🛠 Building project in Debug mode"
-    xcodebuild clean build -project HTMLString.xcodeproj -scheme "$SCHEME" -configuration Debug | xcpretty
+    xcodebuild clean build -project QuerySerialization.xcodeproj -scheme "$SCHEME" -configuration Debug | xcpretty
 
     echo "🛠 Building project in Release mode"
-    xcodebuild clean build -project HTMLString.xcodeproj -scheme "$SCHEME" -configuration Release | xcpretty
+    xcodebuild clean build -project QuerySerialization.xcodeproj -scheme "$SCHEME" -configuration Release | xcpretty
     
     case $TEST in
 
@@ -19,12 +19,12 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
 
         echo "🔍 Running unit tests on simulator [$DEVICE_ID]"
         xcrun simctl boot $DEVICE_ID
-        xcodebuild clean test -project HTMLString.xcodeproj -scheme "$SCHEME" -destination "id=$DEVICE_ID" | xcpretty
+        xcodebuild clean test -project QuerySerialization.xcodeproj -scheme "$SCHEME" -destination "id=$DEVICE_ID" | xcpretty
         ;;
 
     'device')
         echo "🔍 Running unit tests on device"
-        xcodebuild clean test -project HTMLString.xcodeproj -scheme "$SCHEME" -destination "$DESTINATION" | xcpretty
+        xcodebuild clean test -project QuerySerialization.xcodeproj -scheme "$SCHEME" -destination "$DESTINATION" | xcpretty
         ;;
 
     *)
